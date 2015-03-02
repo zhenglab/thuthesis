@@ -16,7 +16,7 @@
 %
 % \fi
 %
-% \CheckSum{2499}
+% \CheckSum{2472}
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -1518,12 +1518,12 @@
   \let\@evenfoot=\@oddfoot}
 \def\ps@thu@headings{%
   \def\@oddhead{\vbox to\headheight{%
-    \hb@xt@\textwidth{\hfill\wuhao\songti\leftmark\ifthu@bachelor\relax\else\hfill\fi}%
+    \hb@xt@\textwidth{\hfill\wuhao\songti\thu@ctitle\ifthu@bachelor\relax\else\hfill\fi}%
       \vskip2pt\hbox{\vrule width\textwidth height0.4pt depth0pt}}}
   \def\@evenhead{\vbox to\headheight{%
       \hb@xt@\textwidth{\wuhao\songti%
       \ifthu@bachelor\thu@schoolname\thu@bachelor@subtitle%
-       \else\hfill\leftmark\fi\hfill}%
+       \else\hfill\thu@ctitle\fi\hfill}%
       \vskip2pt\hbox{\vrule width\textwidth height0.4pt depth0pt}}}
   \def\@oddfoot{\hfil\wuhao\thepage\hfil}
   \let\@evenfoot=\@oddfoot}
@@ -1779,6 +1779,8 @@
 \captionsetup[table]{position=top,belowskip={12bp-\intextsep},aboveskip=6bp}
 \captionsetup[figure]{position=bottom,belowskip={12bp-\intextsep},aboveskip=6bp}
 \captionsetup[sub]{font=thu,skip=6bp}
+\renewcommand{\thefigure}{\thechapter-\@arabic\c@figure}
+\renewcommand{\thetable}{\thechapter-\@arabic\c@table}
 \renewcommand{\thesubfigure}{(\alph{subfigure})}
 \renewcommand{\thesubtable}{(\alph{subtable})}
 % \renewcommand{\p@subfigure}{:}
@@ -1825,7 +1827,6 @@
 \newcommand\CJKprechaptername{第}
 \newcommand\CJKchaptername{章}
 \newcommand\CJKthechapter{\@arabic\c@chapter}
-\renewcommand\chaptername{\CJKprechaptername~\CJKthechapter~\CJKchaptername}
 \renewcommand\appendixname{附录}
 \ifthu@bachelor
   \newcommand{\cabstractname}{中文摘要}
@@ -1894,7 +1895,7 @@
   \@makechapterhead{#2}}
 \def\@makechapterhead#1{%
   \ifthu@bachelor\vspace*{24bp}\else\vspace*{20bp}\fi%
-  {\parindent \z@ \centering
+  {\parindent \z@
     \csname thu@title@font\endcsname\heiti\ifthu@bachelor\xiaosan\else\sanhao[1]\fi
     \ifnum \c@secnumdepth >\m@ne
       \@chapapp\hskip1em
@@ -1986,7 +1987,7 @@
 \renewcommand\subsection{\@startsection{subsection}{2}{\z@}%
                         {\ifthu@bachelor -12bp\else -16bp\fi\@plus -1ex \@minus -.2ex}%
                         {6bp \@plus .2ex}%
-                        {\csname thu@title@font\endcsname\heiti\ifthu@bachelor\xiaosi[1.667]\else\banxiaosi[1.538]\fi}}
+                        {\csname thu@title@font\endcsname\songti\xiaosi}}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1998,7 +1999,7 @@
 \renewcommand\subsubsection{\@startsection{subsubsection}{3}{\z@}%
                            {\ifthu@bachelor -12bp\else -16bp\fi\@plus -1ex \@minus -.2ex}%
                            {6bp \@plus .2ex}%
-                           {\csname thu@title@font\endcsname\heiti\xiaosi[1.667]}}
+                           {\csname thu@title@font\endcsname\songti\xiaosi}}
 %</cls>
 %    \end{macrocode}
 % \end{macro}
@@ -2061,22 +2062,22 @@
   \ifnum \c@tocdepth >\m@ne
     \addpenalty{-\@highpenalty}%
     \vskip 4bp \@plus\p@
-    \setlength\@tempdima{4em}%
+    \setlength\@tempdima{1.7em}%
     \begingroup
       \parindent \z@ \rightskip \@pnumwidth
       \parfillskip -\@pnumwidth
       \leavevmode
       \advance\leftskip\@tempdima
       \hskip -\leftskip
-      {\ifthu@bachelor\sffamily\else\csname thu@toc@font\endcsname\fi\heiti #1} % numberline is called here, and it uses \@tempdima
+      {\ifthu@bachelor\sffamily\else\csname thu@toc@font\endcsname\fi\songti\sihao #1} % numberline is called here, and it uses \@tempdima
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
       \nobreak{\normalfont\normalcolor #2}\par
       \penalty\@highpenalty
     \endgroup
   \fi}
-\renewcommand*\l@section{\@dottedtocline{1}{\ifthu@bachelor 1.0em\else 1.2em\fi}{2.1em}}
-\renewcommand*\l@subsection{\@dottedtocline{2}{\ifthu@bachelor 1.6em\else 2em\fi}{3em}}
-\renewcommand*\l@subsubsection{\@dottedtocline{3}{\ifthu@bachelor 2.4em\else 3.5em\fi}{3.8em}}
+\renewcommand*\l@section{\@dottedtocline{1}{0em}{2.1em}}
+\renewcommand*\l@subsection{\@dottedtocline{2}{0em}{3em}}
+\renewcommand*\l@subsubsection{\@dottedtocline{3}{0em}{3.8em}}
 %</cls>
 %    \end{macrocode}
 % \end{macro}
@@ -2808,12 +2809,6 @@
 % \changes{v3.0}{2007/05/12}{本科论文声明部分图片扫描取消。}
 %    \begin{macrocode}
   {
-    \ifthu@postdoctor\relax\else%
-     \thu@chapter*{\thu@declarename}
-     \par{\xiaosi\parindent2em\thu@declaretext}\vskip2cm
-       {\xiaosi\hfill\thu@signature\thu@underline[2.5cm]\relax%
-        \thu@backdate\thu@underline[2.5cm]\relax}%
-    \fi
   }
 %</cls>
 %    \end{macrocode}
