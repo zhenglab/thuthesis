@@ -78,7 +78,7 @@
 \textsf{longtabular}，命令有一个 \verb|\hlinewd|。三线表可以用 \textsf{booktabs}
 提供的 \verb|\toprule|、\verb|\midrule| 和 \verb|\bottomrule|。它们与
 \textsf{longtable} 能很好的配合使用。如果表格比较简单的话可以直接用命令
-\verb|\hlinewd{xpt}| 控制。
+\verb|hlinewd{xpt}| 控制。
 \begin{table}[htb]
   \centering
   \begin{minipage}[t]{0.8\linewidth} % 如果想在表格中使用脚注，minipage是个不错的办法
@@ -521,6 +521,17 @@ V_j & = v_j, & \qquad X_j & = x_j,
 请手动修改 bbl 文件。
 
 有时候不想要上标，那么可以这样 \onlinecite{shaheshang}，这个非常重要。
+
+有时候一些参考文献没有纸质出处，需要标注 URL。缺省情况下，URL 不会在连字符处断行，
+这可能使得用连字符代替空格的网址分行很难看。如果需要，可以将模板类文件中
+\begin{verbatim}
+\RequirePackage{hyperref}
+\end{verbatim}
+一行改为
+\begin{verbatim}
+\PassOptionsToPackage{hyphens}{url}\RequirePackage{hyperref}
+\end{verbatim}
+使得连字符处可以断行。更多设置可以参考 \texttt{url} 宏包文档。
 
 \section{公式}
 \label{sec:equation}
