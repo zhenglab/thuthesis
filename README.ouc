@@ -1,0 +1,14 @@
+中国海洋大学学位论文LaTeX模板使用简要说明
+
+中国海洋大学学位论文LaTeX模板（OUCThesis）是在清华大学学位论文LaTeX模板（ThuThesis）的基础上修改的，仅根据《中国海洋大学研究生学位论文书写格式20130307.doc》针对封面、目录、格式、字体等做了对应的修改，具体使用等请参考ThuThesis。
+
+ChangeLog:
+thuthesis.dtx --> thuthesis.cls thuthesis.cfg
+	|-> \ps@thu@headings [modify]
+	|-> \chaptername [delete]
+	|-> \chapter -> \@makechapterhead#1 [modify]
+	|-> \subsection [modify]
+	|-> \subsubsection [modify]
+	|-> \tableofcontents - \l@chapter \l@section \l@subsection \l@subsubsection [modify]
+	|-> \newencironment{ack} [modify]
+	|-> \thefigure \thetable [add]
