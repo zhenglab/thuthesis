@@ -2,7 +2,29 @@
 
 中国海洋大学学位论文LaTeX模板（OUCThesis）是在清华大学学位论文LaTeX模板（ThuThesis）的基础上修改的，仅根据《中国海洋大学研究生学位论文书写格式20130307.doc》针对封面、目录、格式、字体等做了对应的修改，具体使用等请参考ThuThesis。
 
-ChangeLog:
+20161224 ouc2017 ChangeLog:
+[fix Windows new/old(with GB2312) fonts problem]
+$ ls /usr/local/texlive/2016/texmf-dist/tex/latex/ctex/fontset/
+ctex-fontset-adobe.def      ctex-fontset-ubuntu.def
+ctex-fontset-fandol.def     ctex-fontset-windows.def
+ctex-fontset-founder.def    ctex-fontset-windowsnew.def
+ctex-fontset-mac.def        ctex-fontset-windowsold.def
+$ ls ~/.fonts
+adobe      mac        misc       windowsnew windowsold
+$ ls ~/.fonts/windowsnew/
+微软vista仿宋.ttf     微软简老宋.ttf        微软繁线体.ttf
+微软vista宋体.ttf     微软简行楷.ttf        微软繁细圆.ttf
+微软vista楷体.ttf     微软简隶书.ttf        微软繁综艺.ttf
+微软雅黑.ttf          微软简魏碑.ttf        微软繁超黑.ttf
+微软黑体.ttf          微软繁宋体.ttf        微软繁魏碑.ttf
+微软简中圆.ttf        微软繁楷体.ttf        微软繁黑体.ttf
+微软简仿宋.ttf        微软繁琥珀.ttf
+微软简综艺.ttf        微软繁粗圆.ttf
+$ fc-cache -fv
+[data/cover.tex]
+[main.tex]
+
+20150302 ouc2015 ChangeLog:
 thuthesis.dtx --> thuthesis.cls thuthesis.cfg
 	|-> \ps@thu@headings [modify]
 	|-> \chaptername [delete]
