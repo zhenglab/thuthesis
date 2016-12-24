@@ -11,7 +11,7 @@ $ git branch oucthesis
 $ git checkout oucthesis
 $ git push origin oucthesis
 
-20161224 ouc2017 ChangeLog:
+20161224 ouc2017 ChangeLog: tested on macOS Sierra with MacTeX 2016
 [fix Windows new/old(with GB2312) fonts problem] fonts/cn_weiruan.rar
 $ ls /usr/local/texlive/2016/texmf-dist/tex/latex/ctex/fontset/
 ctex-fontset-adobe.def      ctex-fontset-ubuntu.def
