@@ -1609,7 +1609,7 @@
   \renewcommand{\footrulewidth}{0pt}}
 \fancypagestyle{thu@headings}{%
   \fancyhead{}
-  \fancyhead[C]{\wuhao\songti\leftmark}
+  \fancyhead[C]{\wuhao\songti\thu@ctitle}
   \fancyfoot{}
   \fancyfoot[C]{\wuhao\thepage}
   \renewcommand{\headrulewidth}{0.4pt}
@@ -1818,6 +1818,8 @@
 \captionsetup[table]{position=top,belowskip={12bp-\intextsep},aboveskip=6bp}
 \captionsetup[figure]{position=bottom,belowskip={12bp-\intextsep},aboveskip=6bp}
 \captionsetup[sub]{font=thu,skip=6bp}
+\renewcommand{\thefigure}{\thechapter-\@arabic\c@figure}
+\renewcommand{\thetable}{\thechapter-\@arabic\c@table}
 \renewcommand{\thesubfigure}{(\alph{subfigure})}
 \renewcommand{\thesubtable}{(\alph{subtable})}
 % \renewcommand{\p@subfigure}{:}
@@ -1849,7 +1851,7 @@
 %    \begin{macrocode}
 %<*cfg>
 \ctexset{%
-  chapter/name={第,章},
+  chapter/name={},
   appendixname=附录,
   contentsname={目\hspace{\ccwd}录},
   listfigurename=插图索引,
@@ -1963,7 +1965,7 @@
     beforeskip={\ifthu@bachelor 13bp\else 9bp\fi},
     aftername=\hskip\ccwd,
     afterskip={\ifthu@bachelor 20bp\else 24bp\fi},
-    format={\centering\thu@title@font\heiti\ifthu@bachelor\xiaosan\else\sanhao[1]\fi},
+    format={\thu@title@font\heiti\ifthu@bachelor\xiaosan\else\sanhao[1]\fi},
     nameformat=\relax,
     numberformat=\relax,
     titleformat=\thu@chapter@titleformat,
@@ -1978,13 +1980,13 @@
     afterindent=true,
     beforeskip={\ifthu@bachelor 12bp\else 16bp\fi\@plus 1ex \@minus .2ex},
     afterskip={6bp \@plus .2ex},
-    format={\thu@title@font\heiti\ifthu@bachelor\xiaosi[1.667]\else\banxiaosi[1.538]\fi},
+    format={\thu@title@font\songti\ifthu@bachelor\xiaosi[1.667]\else\xiaosi[1.667]\fi},
   },
   subsubsection={
     afterindent=true,
     beforeskip={\ifthu@bachelor 12bp\else 16bp\fi\@plus 1ex \@minus .2ex},
     afterskip={6bp \@plus .2ex},
-    format={\csname thu@title@font\endcsname\heiti\xiaosi[1.667]},
+    format={\csname thu@title@font\endcsname\songti\xiaosi[1.667]},
   },
   paragraph/afterindent=true,
   subparagraph/afterindent=true}
@@ -2061,7 +2063,7 @@
 % 目录生成命令。
 %    \begin{macrocode}
 \renewcommand\tableofcontents{%
-  \thu@chapter*[]{\contentsname}
+  {\centering\thu@chapter*[]{\contentsname}}
   \ifthu@bachelor\xiaosi[1.8]\else\xiaosi[1.65]\fi\@starttoc{toc}\normalsize}
 %    \end{macrocode}
 % 调整目录样式，允许指定目录字体。
@@ -2079,7 +2081,7 @@
   \ifnum \c@tocdepth >\m@ne
     \addpenalty{-\@highpenalty}%
     \vskip 4bp \@plus\p@
-    \setlength\@tempdima{4em}%
+    \setlength\@tempdima{1.7em}%
     \begingroup
       \parindent \z@ \rightskip \@pnumwidth
       \parfillskip -\@pnumwidth
@@ -2087,7 +2089,7 @@
       \advance\leftskip\@tempdima
       \hskip -\leftskip
       % numberline is called here, and it uses \@tempdima
-      {\ifthu@bachelor\sffamily\else\csname thu@toc@font\endcsname\fi\heiti #1}
+      {\ifthu@bachelor\sffamily\else\csname thu@toc@font\endcsname\fi\songti\sihao #1}
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
       \nobreak{\normalfont\normalcolor #2}\par
       \penalty\@highpenalty
@@ -2100,12 +2102,15 @@
 % 南中未作明确规定，示例文件中对于一级和二级节标题分别缩进 1 和 1.5 个汉字符。
 % \changes{v5.0.0}{2015/04/28}{修正学位论文中目录里节前缩进(\#103)}
 %    \begin{macrocode}
-\renewcommand*\l@section{%
-  \@dottedtocline{1}{\ccwd}{2.1em}}
-\renewcommand*\l@subsection{%
-  \@dottedtocline{2}{\ifthu@bachelor 1.5\ccwd\else 2\ccwd\fi}{3em}}
-\renewcommand*\l@subsubsection{%
-  \@dottedtocline{3}{\ifthu@bachelor 2.4em\else 3.5em\fi}{3.8em}}
+\renewcommand*\l@section[1]{%
+  \@dottedtocline{1}{0em}{2.1em}
+  {\songti\xiaosi #1}}
+\renewcommand*\l@subsection[1]{%
+  \@dottedtocline{2}{0em}{3em}
+  {\songti\xiaosi #1}}
+\renewcommand*\l@subsubsection[1]{%
+  \@dottedtocline{3}{0em}{3.8em}
+  {\songti\xiaosi #1}}
 %</cls>
 %    \end{macrocode}
 % \end{macro}
@@ -2940,7 +2945,7 @@
 %    \begin{macrocode}
 %<*cls>
 \NewDocumentEnvironment{acknowledgement}{o}{%
-    \thu@chapter*{\thu@ackname}
+    {\centering\thu@chapter*{\thu@ackname}}
   }
 %    \end{macrocode}
 %
@@ -2949,18 +2954,6 @@
 % \changes{v5.0.0}{2015/06/05}{使用 pdfpages 宏包支持本硕博论文声明扫描版(\#36)。}
 %    \begin{macrocode}
   {
-    \ifthu@postdoctor\relax\else%
-      \IfNoValueTF{#1}{%
-        \thu@chapter*{\thu@declarename}
-        \par{\xiaosi\parindent2em\thu@declaretext}\vskip2cm
-        {\xiaosi\hfill\thu@signature\thu@underline[2.5cm]\relax%
-         \thu@backdate\thu@underline[2.5cm]\relax}%
-      }{%
-        \includepdf[pagecommand={\thispagestyle{thu@empty}%
-          \phantomsection\addcontentsline{toc}{chapter}{\thu@declarename}%
-        }]{#1}%
-      }%
-    \fi
   }
 %    \end{macrocode}
 % \end{environment}
@@ -3108,7 +3101,7 @@
 %    \begin{macrocode}
 %<*cls>
 \renewenvironment{thebibliography}[1]{%
-   \thu@chapter*{\bibname}%
+   {\centering\thu@chapter*[]{\heiti\xiaosi\bibname}}%
    \wuhao[1.5]
    \list{\@biblabel{\@arabic\c@enumiv}}%
         {\renewcommand{\makelabel}[1]{##1\hfill}

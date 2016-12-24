@@ -2,8 +2,17 @@
 
 中国海洋大学学位论文LaTeX模板（OUCThesis）是在清华大学学位论文LaTeX模板（ThuThesis）的基础上修改的，仅根据《中国海洋大学研究生学位论文书写格式20130307.doc》针对封面、目录、格式、字体等做了对应的修改，具体使用等请参考ThuThesis。
 
+$ git remote -v
+$ git fetch upstream
+$ git branch
+$ git checkout master
+$ git merge upstream/master
+$ git branch oucthesis
+$ git checkout oucthesis
+$ git push origin oucthesis
+
 20161224 ouc2017 ChangeLog:
-[fix Windows new/old(with GB2312) fonts problem]
+[fix Windows new/old(with GB2312) fonts problem] fonts/cn_weiruan.rar
 $ ls /usr/local/texlive/2016/texmf-dist/tex/latex/ctex/fontset/
 ctex-fontset-adobe.def      ctex-fontset-ubuntu.def
 ctex-fontset-fandol.def     ctex-fontset-windows.def
@@ -23,6 +32,17 @@ $ ls ~/.fonts/windowsnew/
 $ fc-cache -fv
 [data/cover.tex]
 [main.tex]
+[thuthesis.dtx]
+thuthesis.dtx --> thuthesis.cls thuthesis.cfg
+	|-> \ps@thu@headings -> thu@headings -> \leftmark => \thu@ctitle
+	|-> \thefigure \thetable (add) 2.1 => 2-1 [data/chap01.tex]
+	|-> \ctexset -> chapter/name={第,章} => chapter/name={}
+	|-> \ctexset -> chapter={...format={\centering...} => chapter={...format={...}
+	|-> \ctexset -> subsection={...format={ (modify) }
+	|-> \ctexset -> subsubsection={...format={ (modify) }
+	|-> \tableofcontents - \l@chapter \l@section \l@subsection \l@subsubsection (modify)
+	|-> {acknowledgement} (modify)
+	|-> {thebibliography} -> \bibname (modify)
 
 20150302 ouc2015 ChangeLog:
 thuthesis.dtx --> thuthesis.cls thuthesis.cfg
@@ -32,5 +52,5 @@ thuthesis.dtx --> thuthesis.cls thuthesis.cfg
 	|-> \subsection [modify]
 	|-> \subsubsection [modify]
 	|-> \tableofcontents - \l@chapter \l@section \l@subsection \l@subsubsection [modify]
-	|-> \newencironment{ack} [modify]
+	|-> \newenvironment{ack} [modify]
 	|-> \thefigure \thetable [add]

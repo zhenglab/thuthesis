@@ -300,19 +300,19 @@ EP.B.8 & 126.74 & 0.003 & 0.017 & 0.005 & 0.083 & 1656 \\
 
 有这种需求的多是本科同学的英文资料翻译部分，如果觉得附录中英文原文中的表格和图
 片显示成“表”和“图”不协调的话，一个很好的办法就是用 \cs{caption*}，参数
-随便自己写，比如不守规矩的表~1.111 和图~1.111 能满足这种特殊需要（可以参看附录部
+随便自己写，比如不守规矩的表~1-111 和图~1-111 能满足这种特殊需要（可以参看附录部
 分）。
 \begin{table}[ht]
   \begin{minipage}{0.4\linewidth}
     \centering
-    \caption*{表~1.111\quad 这是一个手动编号，不出现在索引中的表格。}
+    \caption*{表~1-111\quad 这是一个手动编号，不出现在索引中的表格。}
     \label{tab:badtabular}
       \framebox(150,50)[c]{\thuthesis}
   \end{minipage}%
   \hfill%
   \begin{minipage}{0.4\linewidth}
     \centering
-    \caption*{Figure~1.111\quad 这是一个手动编号，不出现在索引中的图。}
+    \caption*{Figure~1-111\quad 这是一个手动编号，不出现在索引中的图。}
     \label{tab:badfigure}
     \framebox(150,50)[c]{薛瑞尼}
   \end{minipage}
