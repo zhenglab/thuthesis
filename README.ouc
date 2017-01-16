@@ -43,6 +43,7 @@ thuthesis.dtx --> thuthesis.cls thuthesis.cfg
 	|-> \tableofcontents - \l@chapter \l@section \l@subsection \l@subsubsection (modify)
 	|-> {acknowledgement} (modify)
 	|-> {thebibliography} -> \bibname (modify)
+    	|-> \thu@resume@title -> (add) \centering
 
 20150302 ouc2015 ChangeLog:
 thuthesis.dtx --> thuthesis.cls thuthesis.cfg
